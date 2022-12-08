@@ -1,46 +1,88 @@
-
-
-<section>
-    <div class="container">
-        <table class="table mt-5">
-            <thead>
-                <tr>
-                    <th scope="col">item</th>
-                    <th scope="col">title</th>
-                    <th scope="col">quantity</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {{#each products}}
-                    <tr>
+<div class="container">
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">item</th>
+                <th scope="col">title</th>
+                <th scope="col">price</th>
+                <th scope="col">quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
                 <td><img style="width:70px;height:90px;" src="/product-image/{{this.product._id}}.jpg" alt=""></td>
                 <td>{{this.product.name}}</td>
-                     <td>
-                  <button class="cart-item-count mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)">-</button>{{this.quantity}}<button class="cart-item-count ml-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)">+</button>
+                <td>RS:{{this.product.prize}}</td>
+                <td>
+                    <button class="cart-item-count mr-2"
+                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">-</button>
+                    <span id="{{this.product._id}}">{{this.quantity}}</span>
+                    <button class="cart-item-count ml-2 "
+                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)">+</button>
                 </td>
                 <td>
-                    <a href="" class="btn btn-danger">remove</a>
-                </td>  
+                     <button class="btn btn-danger " onclick="  removepro('{{this.product._id}}')" >Remove </button>  
+                </td>
             </tr>
-           {{/each}}
+            {{/each}}
         </tbody>
-        </table>
+    </table>
+    <hr>
+    <div class="float-right pr-5">
+        <h3 class="float-left mr-5 mt-4">Total: RS. <span id="total">{{totalValue}}</span></h3>
+        <a href="/place-order" class="btn btn-success mt-3" style="width: 100%;">Place Order</a>
     </div>
-</section>
+</div> 
+
+
+ 
+
+
+
 
 <script>
-    function changeQuantity(cartId,proId,count){
+
+    function removepro( proId) {
         $.ajax({
-            url:'/change-product-quantity',
-            data:{
-                cart:cartId,
-                product:;proId,
-                count:count
-            },
-            method:'post',
+            url: '/removepro/' + proId,
+            method:'get',
             success:(response)=>{
-                alert(response)
+                if(response.status){
+                    location.reload()
+                   return confirm('are you want to delete tis')
+                }
+                
             }
         })
     }
+
+</script>
+
+<script>
+    function changeQuantity(cartId, proId, userId, count) {
+        let quantity = parseInt(document.getElementById(proId).innerHTML)
+        console.log(quantity)
+        count = parseInt(count)
+        $.ajax({
+            url: '/changeproductquantity',
+            data: {
+                user: userId,
+                cart: cartId,
+                product: proId,
+                count: count,
+                quantity: quantity
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.removproduct) {
+                    alert("product removed from cart")
+                    location.reload()
+                } else {
+                    document.getElementById(proId).innerHTML = quantity + count
+                    document.getElementById('total').innerHTML = response.total
+                }
+            }
+        })
+    }         
 </script>
