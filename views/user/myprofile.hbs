@@ -1,0 +1,682 @@
+{{!--
+
+<div class="container">
+    <h1 class="text-center">My profile</h1>
+    <div class="row ">
+        <div class="align-right">
+            {{#if user}}
+            <a class="btn btn-primary" href="/logout">Logout</a>
+            {{else}}
+            <a class="btn btn-primary" href="/login">Login</a>
+            {{/if}}
+        </div>
+
+        <form action="/edit-prof" method="post">
+
+
+            <img class=" rounded-circle btn "
+                src="data:image/jpeg;base64,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"
+                alt="">
+
+            <div class="form-group">
+                <h3 class="my">name: {{user.name}}</h3>
+                <br>
+                <h3 class="my">qualification: {{user.qualification}}</h3>
+            </div>
+            <br>
+            <br>
+        </form>
+        <div class="container">
+            <div class="row">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action " id="list-home-list" data-bs-toggle="list"
+                                href="#list-home" role="tab" aria-controls="list-home">Edit Profile</a>
+                            <a class="list-group-item list-group-item-action" id="list-profile-list"
+                                data-bs-toggle="list" href="#list-profile" role="tab"
+                                aria-controls="list-profile">Notification</a>
+                            <a class="list-group-item list-group-item-action" id="list-messages-list"
+                                data-bs-toggle="list" href="#list-messages" role="tab"
+                                aria-controls="list-messages">Notification Settings</a>
+                            <a class="list-group-item list-group-item-action" id="list-settings-list"
+                                data-bs-toggle="list" href="#list-settings" role="tab"
+                                aria-controls="list-settings">Shere App</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        --}}
+
+
+
+
+
+        <body>
+            <!-- Start Header Area -->
+
+            <!-- Start Header Area -->
+
+            <!-- Start Mobile Header -->
+
+            <!-- End Mobile Header -->
+
+            <!--  Start Offcanvas Mobile Menu Section -->
+
+            <!-- Start Offcanvas Mobile Menu Section -->
+
+            <!-- Start Offcanvas Addcart Section -->
+
+            <!-- Start Offcanvas Mobile Menu Section -->
+
+            <!-- Start Offcanvas Search Bar Section -->
+
+            <!-- End Offcanvas Search Bar Section -->
+
+            <!-- Offcanvas Overlay -->
+            <div class="offcanvas-overlay"></div>
+
+            <!-- ...:::: Start Breadcrumb Section:::... -->
+            <div class="breadcrumb-section breadcrumb-bg-color--golden">
+                <div class="breadcrumb-wrapper">
+                    <div class="container">
+                        <div class="row">
+                            {{#if user}}
+                            <div class="col-12">
+                                <h3 class="breadcrumb-title">{{user.name}}</h3>
+                                <div
+                                    class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                                    <nav aria-label="breadcrumb">
+                                        <ul>
+                                            <li><a href="/">Home</a></li>
+                                            <li><a href="shop-grid-sidebar-left.html">Shop</a></li>
+                                            <li class="active" aria-current="page">My Account</li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- ...:::: End Breadcrumb Section:::... -->
+
+            <!-- ...:::: Start Account Dashboard Section:::... -->
+            <div class="account-dashboard">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-3 col-lg-3">
+                            <!-- Nav tabs -->
+                            <div class="dashboard_tab_button" data-aos="fade-up" data-aos-delay="0">
+                                <ul role="tablist" class="nav flex-column dashboard-list">
+                                    <li><a href="#dashboard" data-bs-toggle="tab"
+                                            class="nav-link btn btn-block btn-md btn-black-default-hover active">Dashboard</a>
+                                    </li>
+
+                                    <li><a href="#downloads" data-bs-toggle="tab"
+                                            class="nav-link btn btn-block btn-md btn-black-default-hover">Orders</a>
+                                    </li>
+                                    <li><a href="#address" data-bs-toggle="tab"
+                                            class="nav-link btn btn-block btn-md btn-black-default-hover">coupons</a>
+                                    </li>
+                                    <li><a href="#account-details" data-bs-toggle="tab"
+                                            class="nav-link btn btn-block btn-md btn-black-default-hover">Account
+                                            details</a>
+                                    </li>
+                                    <li><a href="/logout"
+                                            class="nav-link btn btn-block btn-md btn-black-default-hover">logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-9 col-lg-9">
+                            <!-- Tab panes -->
+                            <div class="tab-content dashboard_content" data-aos="fade-up" data-aos-delay="200">
+                                <div class="tab-pane fade show active" id="dashboard">
+                                    <h4>Dashboard </h4>
+                                    <p>From your account dashboard. you can easily check &amp; view your <a
+                                            href="#">recent
+                                            orders</a>, manage your <a href="#">shipping and billing addresses</a> and
+                                        <a href="#">Edit your password and account details.</a>
+                                    </p>
+                                </div>
+                                <div class="tab-pane fade" id="orders">
+                                    <h4>Orders</h4>
+                                    <div class="table_page table-responsive">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Adress</th>
+                                                    <th>Picode</th>
+                                                    <th>Mobile</th>
+                                                    <th>Total Amount</th>
+                                                    <th>payment-method</th>
+                                                    <th>status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each orders}}
+                                                <tr>
+                                                    <td>{{this.date}}</td>
+                                                    <td>{{this.deliveryDetils.address}}</td>
+                                                    <td>{{this.deliveryDetils.pincode}}</td>
+                                                    <td>{{this.deliveryDetils.mobile}}</td>
+                                                    <td>{{this.totalAmount}}</td>
+                                                    <td>{{this.paymentmethod}}</td>
+                                                    <td>{{this.status}}</td>
+                                                    <td>
+                                                        <a href="/view-order-products/{{this._id}}"
+                                                            class="btn btn-primary">view products</a>
+                                                    </td>
+                                                </tr>
+                                                {{/each}}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="downloads">
+                                    <h4>Downloads</h4>
+                                    <div class="table_page table-responsive">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Adress</th>
+                                                    <th>Picode</th>
+                                                    <th>Mobile</th>
+                                                    <th>Total Amount</th>
+                                                    <th>payment-method</th>
+                                                    <th>status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each orders}}
+                                                <tr>
+                                                    <td>{{this.date}}</td>
+                                                    <td>{{this.deliveryDetils.address}}</td>
+                                                    <td>{{this.deliveryDetils.pincode}}</td>
+                                                    <td>{{this.deliveryDetils.mobile}}</td>
+                                                    <td>{{this.totalAmount}}</td>
+                                                    <td>{{this.paymentmethod}}</td>
+                                                    <td>{{this.status}}</td>
+                                                    <td>
+                                                        <a href="/view-order-products/{{this._id}}"
+                                                            class="btn btn-primary">view products</a>
+                                                    </td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="address">
+                                    {{#each coupon}}
+                                    <div class="row col-6 col-sm-6 col-md-6 col-lg-6 ">
+                                        <div class="" style="width: 18rem; background-color: rgb(208, 149, 149);">
+                                            <div class="card-body">
+                                                <a class="" style="color: white; font-size: 36px;">{{this.Code}}</a>
+                                                <h4></h4>
+                                                <p class="card-text" style="color: green;">coupon type:
+                                                    {{this.CouponType}}</p>
+                                                <a href="#" class="btn " style="color: blue;">cutoff:
+                                                    {{this.CutOff}}</a>
+                                                <h5>minimum ammount: {{this.minAmount}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    {{/each}}
+                                </div>
+                                <div class="tab-pane fade" id="account-details">
+                                    <h3>Account details </h3>
+                                    <div class="login">
+                                        <div class="login_form_container">
+                                            <div class="account_login_form">
+                                                <form action="#">
+                                                    <p>Already have an account? <a href="#">Log in instead!</a></p>
+                                                    <div class="input-radio">
+                                                        <span class="custom-radio"><input type="radio" value="1"
+                                                                name="id_gender"> Mr.</span>
+                                                        <span class="custom-radio"><input type="radio" value="1"
+                                                                name="id_gender"> Mrs.</span>
+                                                    </div> <br>
+                                                    <div class="default-form-box mb-20">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="first-name">
+                                                    </div>
+                                                    <div class="default-form-box mb-20">
+                                                        <label>Last Name</label>
+                                                        <input type="text" name="last-name">
+                                                    </div>
+                                                    <div class="default-form-box mb-20">
+                                                        <label>Email</label>
+                                                        <input type="text" name="email-name">
+                                                    </div>
+                                                    <div class="default-form-box mb-20">
+                                                        <label>Password</label>
+                                                        <input type="password" name="user-password">
+                                                    </div>
+                                                    <div class="default-form-box mb-20">
+                                                        <label>Birthdate</label>
+                                                        <input type="date" name="birthday">
+                                                    </div>
+                                                    <span class="example">
+                                                        (E.g.: 05/31/1970)
+                                                    </span>
+                                                    <br>
+                                                    <label class="checkbox-default" for="offer">
+                                                        <input type="checkbox" id="offer">
+                                                        <span>Receive offers from our partners</span>
+                                                    </label>
+                                                    <br>
+                                                    <label class="checkbox-default checkbox-default-more-text"
+                                                        for="newsletter">
+                                                        <input type="checkbox" id="newsletter">
+                                                        <span>Sign up for our newsletter<br><em>You may unsubscribe at
+                                                                any
+                                                                moment. For that purpose, please find our contact info
+                                                                in the
+                                                                legal notice.</em></span>
+                                                    </label>
+                                                    <div class="save_button mt-3">
+                                                        <button class="btn btn-md btn-black-default-hover"
+                                                            type="submit">Save</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- ...:::: End Account Dashboard Section:::... -->
+
+            <!-- Start Footer Section -->
+            <footer class="footer-section footer-bg section-top-gap-100">
+                <div class="footer-wrapper">
+                    <!-- Start Footer Top -->
+                    <div class="footer-top">
+                        <div class="container">
+                            <div class="row mb-n6">
+                                <div class="col-lg-3 col-sm-6 mb-6">
+                                    <!-- Start Footer Single Item -->
+                                    <div class="footer-widget-single-item footer-widget-color--golden"
+                                        data-aos="fade-up" data-aos-delay="0">
+                                        <h5 class="title">INFORMATION</h5>
+                                        <ul class="footer-nav">
+                                            <li><a href="#">Delivery Information</a></li>
+                                            <li><a href="#">Terms & Conditions</a></li>
+                                            <li><a href="contact-us.html">Contact</a></li>
+                                            <li><a href="#">Returns</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Footer Single Item -->
+                                </div>
+                                <div class="col-lg-3 col-sm-6 mb-6">
+                                    <!-- Start Footer Single Item -->
+                                    <div class="footer-widget-single-item footer-widget-color--golden"
+                                        data-aos="fade-up" data-aos-delay="200">
+                                        <h5 class="title">MY ACCOUNT</h5>
+                                        <ul class="footer-nav">
+                                            <li><a href="my-account.html">My account</a></li>
+                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                            <li><a href="faq.html">Frequently Questions</a></li>
+                                            <li><a href="#">Order History</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Footer Single Item -->
+                                </div>
+                                <div class="col-lg-3 col-sm-6 mb-6">
+                                    <!-- Start Footer Single Item -->
+                                    <div class="footer-widget-single-item footer-widget-color--golden"
+                                        data-aos="fade-up" data-aos-delay="400">
+                                        <h5 class="title">CATEGORIES</h5>
+                                        <ul class="footer-nav">
+                                            <li><a href="#">Decorative</a></li>
+                                            <li><a href="#">Kitchen utensils</a></li>
+                                            <li><a href="#">Chair & Bar stools</a></li>
+                                            <li><a href="#">Sofas and Armchairs</a></li>
+                                            <li><a href="#">Interior lighting</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Footer Single Item -->
+                                </div>
+                                <div class="col-lg-3 col-sm-6 mb-6">
+                                    <!-- Start Footer Single Item -->
+                                    <div class="footer-widget-single-item footer-widget-color--golden"
+                                        data-aos="fade-up" data-aos-delay="600">
+                                        <h5 class="title">ABOUT US</h5>
+                                        <div class="footer-about">
+                                            <p>We are a team of designers and developers that create high quality
+                                                Magento,
+                                                Prestashop, Opencart.</p>
+
+                                            <address class="address">
+                                                <span>Address: Your address goes here.</span>
+                                                <span>Email: demo@example.com</span>
+                                            </address>
+                                        </div>
+                                    </div>
+                                    <!-- End Footer Single Item -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Footer Top -->
+
+                    <!-- Start Footer Center -->
+                    <div class="footer-center">
+                        <div class="container">
+                            <div class="row mb-n6">
+                                <div class="col-xl-3 col-lg-4 col-md-6 mb-6">
+                                    <div class="footer-social" data-aos="fade-up" data-aos-delay="0">
+                                        <h4 class="title">FOLLOW US</h4>
+                                        <ul class="footer-social-link">
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xl-7 col-lg-6 col-md-6 mb-6">
+                                    <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="200">
+                                        <h4 class="title">DON'T MISS OUT ON THE LATEST</h4>
+                                        <div class="form-newsletter">
+                                            <form action="#" method="post">
+                                                <div class="form-fild-newsletter-single-item input-color--golden">
+                                                    <input type="email" placeholder="Your email address..." required>
+                                                    <button type="submit">SUBSCRIBE!</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Footer Center -->
+
+                    <!-- Start Footer Bottom -->
+                    <div class="footer-bottom">
+                        <div class="container">
+                            <div
+                                class="row justify-content-between align-items-center align-items-center flex-column flex-md-row mb-n6">
+                                <div class="col-auto mb-6">
+                                    <div class="footer-copyright">
+                                        <p class="copyright-text">&copy; 2021 <a href="index.html">therankme</a>. Made
+                                            with <i class="fa fa-heart text-danger"></i> by <a
+                                                href="https://therankme.com/" target="_blank">therankme</a> </p>
+
+                                    </div>
+                                </div>
+                                <div class="col-auto mb-6">
+                                    <div class="footer-payment">
+                                        <div class="image">
+                                            <img src="assets/images/company-logo/payment.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Footer Bottom -->
+                </div>
+            </footer>
+            <!-- End Footer Section -->
+
+            <!-- material-scrolltop button -->
+            <button class="material-scrolltop" type="button"></button>
+
+            <!-- Start Modal Add cart -->
+            <div class="modal fade" id="modalAddcart" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <button type="button" class="close modal-close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="modal-add-cart-product-img">
+                                                    <img class="img-fluid"
+                                                        src="assets/images/product/default/home-1/default-1.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="modal-add-cart-info"><i class="fa fa-check-square"></i>Added
+                                                    to cart
+                                                    successfully!</div>
+                                                <div class="modal-add-cart-product-cart-buttons">
+                                                    <a href="cart.html">View Cart</a>
+                                                    <a href="checkout.html">Checkout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 modal-border">
+                                        <ul class="modal-add-cart-product-shipping-info">
+                                            <li> <strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
+                                                    Cart.</strong></li>
+                                            <li> <strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
+                                            <li class="modal-continue-button"><a href="#"
+                                                    data-bs-dismiss="modal">CONTINUE
+                                                    SHOPPING</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Modal Add cart -->
+
+            <!-- Start Modal Quickview cart -->
+            <div class="modal fade" id="modalQuickview" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog  modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <button type="button" class="close modal-close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="product-details-gallery-area mb-7">
+                                            <!-- Start Large Image -->
+                                            <div class="product-large-image modal-product-image-large swiper-container">
+                                                <div class="swiper-wrapper">
+                                                    <div class="product-image-large-image swiper-slide img-responsive">
+                                                        <img src="assets/images/product/default/home-1/default-1.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-large-image swiper-slide img-responsive">
+                                                        <img src="assets/images/product/default/home-1/default-2.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-large-image swiper-slide img-responsive">
+                                                        <img src="assets/images/product/default/home-1/default-3.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-large-image swiper-slide img-responsive">
+                                                        <img src="assets/images/product/default/home-1/default-4.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-large-image swiper-slide img-responsive">
+                                                        <img src="assets/images/product/default/home-1/default-5.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-large-image swiper-slide img-responsive">
+                                                        <img src="assets/images/product/default/home-1/default-6.jpg"
+                                                            alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Large Image -->
+                                            <!-- Start Thumbnail Image -->
+                                            <div
+                                                class="product-image-thumb modal-product-image-thumb swiper-container pos-relative mt-5">
+                                                <div class="swiper-wrapper">
+                                                    <div class="product-image-thumb-single swiper-slide">
+                                                        <img class="img-fluid"
+                                                            src="assets/images/product/default/home-1/default-1.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-thumb-single swiper-slide">
+                                                        <img class="img-fluid"
+                                                            src="assets/images/product/default/home-1/default-2.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-thumb-single swiper-slide">
+                                                        <img class="img-fluid"
+                                                            src="assets/images/product/default/home-1/default-3.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-thumb-single swiper-slide">
+                                                        <img class="img-fluid"
+                                                            src="assets/images/product/default/home-1/default-4.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-thumb-single swiper-slide">
+                                                        <img class="img-fluid"
+                                                            src="assets/images/product/default/home-1/default-5.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="product-image-thumb-single swiper-slide">
+                                                        <img class="img-fluid"
+                                                            src="assets/images/product/default/home-1/default-6.jpg"
+                                                            alt="">
+                                                    </div>
+                                                </div>
+                                                <!-- Add Arrows -->
+                                                <div class="gallery-thumb-arrow swiper-button-next"></div>
+                                                <div class="gallery-thumb-arrow swiper-button-prev"></div>
+                                            </div>
+                                            <!-- End Thumbnail Image -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="modal-product-details-content-area">
+                                            <!-- Start  Product Details Text Area-->
+                                            <div class="product-details-text">
+                                                <h4 class="title">Nonstick Dishwasher PFOA</h4>
+                                                <div class="price"><del>$70.00</del>$80.00</div>
+                                            </div> <!-- End  Product Details Text Area-->
+                                            <!-- Start Product Variable Area -->
+                                            <div class="product-details-variable">
+                                                <!-- Product Variable Single Item -->
+                                                <div class="variable-single-item">
+                                                    <span>Color</span>
+                                                    <div class="product-variable-color">
+                                                        <label for="modal-product-color-red">
+                                                            <input name="modal-product-color"
+                                                                id="modal-product-color-red" class="color-select"
+                                                                type="radio" checked>
+                                                            <span class="product-color-red"></span>
+                                                        </label>
+                                                        <label for="modal-product-color-tomato">
+                                                            <input name="modal-product-color"
+                                                                id="modal-product-color-tomato" class="color-select"
+                                                                type="radio">
+                                                            <span class="product-color-tomato"></span>
+                                                        </label>
+                                                        <label for="modal-product-color-green">
+                                                            <input name="modal-product-color"
+                                                                id="modal-product-color-green" class="color-select"
+                                                                type="radio">
+                                                            <span class="product-color-green"></span>
+                                                        </label>
+                                                        <label for="modal-product-color-light-green">
+                                                            <input name="modal-product-color"
+                                                                id="modal-product-color-light-green"
+                                                                class="color-select" type="radio">
+                                                            <span class="product-color-light-green"></span>
+                                                        </label>
+                                                        <label for="modal-product-color-blue">
+                                                            <input name="modal-product-color"
+                                                                id="modal-product-color-blue" class="color-select"
+                                                                type="radio">
+                                                            <span class="product-color-blue"></span>
+                                                        </label>
+                                                        <label for="modal-product-color-light-blue">
+                                                            <input name="modal-product-color"
+                                                                id="modal-product-color-light-blue" class="color-select"
+                                                                type="radio">
+                                                            <span class="product-color-light-blue"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- Product Variable Single Item -->
+                                                <div class="d-flex align-items-center flex-wrap">
+                                                    <div class="variable-single-item ">
+                                                        <span>Quantity</span>
+                                                        <div class="product-variable-quantity">
+                                                            <input min="1" max="100" value="1" type="number">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="product-add-to-cart-btn">
+                                                        <a href="#" data-bs-toggle="modal"
+                                                            data-bs-target="#modalAddcart">Add To
+                                                            Cart</a>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- End Product Variable Area -->
+                                            <div class="modal-product-about-text">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
+                                                    iste
+                                                    laborum ad impedit pariatur esse optio tempora sint ullam autem
+                                                    deleniti nam
+                                                    in quos qui nemo ipsum numquam, reiciendis maiores quidem aperiam,
+                                                    rerum vel
+                                                    recusandae</p>
+                                            </div>
+                                            <!-- Start  Product Details Social Area-->
+                                            <div class="modal-product-details-social">
+                                                <span class="title">SHARE THIS PRODUCT</span>
+                                                <ul>
+                                                    <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                                    </li>
+                                                    <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                                                    </li>
+                                                    <li><a href="#" class="pinterest"><i
+                                                                class="fa fa-pinterest"></i></a></li>
+                                                    <li><a href="#" class="google-plus"><i
+                                                                class="fa fa-google-plus"></i></a>
+                                                    </li>
+                                                    <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                                                    </li>
+                                                </ul>
+
+                                            </div> <!-- End  Product Details Social Area-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Modal Quickview cart -->
+
+        </body>
+
+        </html>

@@ -1,7 +1,7 @@
 
-function addToCart(proId,userId) {
+function addToCart(proId) {
     $.ajax({
-        url: '/add-to-cart/' + proId,userId,
+        url: '/add-to-cart/' + proId,
         method: 'get',
         success: (response) => {
             if (response.status) {
@@ -12,3 +12,12 @@ function addToCart(proId,userId) {
         }
     })
 }
+ function addtowish(proId){
+    $.ajax({
+        url:'/addtowish/'+proId,
+        method:'get',
+        success:(response)=>{
+
+        }
+    })
+ }

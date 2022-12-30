@@ -1,4 +1,4 @@
-
+ 
 
         <form action="login" method="post">
               <h4 >Login</h4>
@@ -14,7 +14,8 @@
     <input type="password" name="password" class="form-control" id="exampleInputPassword1">
   </div>
   <button type="submit" value="ref" class="btn btn-primary">Submit</button>
-  <a class="text-danger" href="signup">create new account?</a>
+  <a class="text-danger" href="signup">create new account?</a><br><br>
+  <a href="/forgotmypass">Forgot my Password</a>
 </form>
   
 <style>
@@ -23,7 +24,7 @@
       justify-content: center;
       align-items: center;
       height: 80vh;
-      background: gray;
+      background: rgb(211, 137, 206);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     form{
@@ -58,3 +59,51 @@
       font-weight: 600;
     }
 </style>
+
+{{!-- 
+
+<main>
+    <section class="login_box_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<img class="img-fluid" src="/user/img/login.jpg" alt="">
+						<div class="hover">
+							<h4>New to our website?</h4>
+							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3>Log in to enter</h3>
+						<form class="row login_form" action="login" method="post" id="contactForm" novalidate="novalidate">
+
+					 {{#if loginErr}}
+        <p class="error">{{loginErr}}</p>
+            {{/if}}
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="name" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'usereamil'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="name" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit"  class="primary-btn">Log In</button>
+								<a href="#">Forgot Password?</a>
+							</div>
+						</form>
+						<a class="primary-btn" href="signup" >Create an Account</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+
+
+
+ --}}

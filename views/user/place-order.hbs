@@ -1,117 +1,711 @@
-<h2 class="text-center mt-4">Enter Deliver Details</h2>
+{{!-- <h2 class="text-center mt-4">Enter Deliver Details</h2>
 <form action="" id="checkout-form">
-  <div class="grid-container">
-    <div class="grid-item">
-      <div>
-        <label for="">Address</label>
-        <input class="form-control" name="address" type="text">
-      </div>
-      <div>
-        <label for="">Pincode</label>
-        <input class="form-control" name="pincode" type="text">
-      </div>
-      <div>
-        <label for="">Mobile</label>
-        <input class="form-control" name="mobile" type="number">
-        <input type="text" name="userId" value="{{user._id}}" id="" hidden>
-      </div>
+    <div class="grid-container">
+        <div class="grid-item">
+            <div>
+                <label for="">Address</label>
+                <input class="form-control" name="address" type="text">
+            </div>
+            <div>
+                <label for="">Pincode</label>
+                <input class="form-control" name="pincode" type="text">
+            </div>
+            <div>
+                <label for="">Mobile</label>
+                <input class="form-control" name="mobile" type="number">
+                <input type="text" name="userId" value="{{user._id}}" id="" hidden>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div>
+                <h4>Total Amount : RS.{{total}}</h4>
+                <hr>
+                <p>Payment method</p>
+                <form>
+                    <input type="radio" id="html" name="payment-method" value="COD">
+                    <label for="html">COD</label><br>
+                    <input type="radio" id="css" name="payment-method" value="ONLINE">
+                    <label for="css">Online Payment</label><br>
+                </form>
+            </div>
+            <button class="btn btn-primary mt-3">Checkout</button>
+        </div>
     </div>
-    <div class="grid-item">
-      <div>
-        <h4>Total Amount : RS.{{total}}</h4>
-        <hr>
-        <p>Payment method</p>
-        <form>
-          <input type="radio" id="html" name="payment-method" value="COD">
-          <label for="html">COD</label><br>
-          <input type="radio" id="css" name="payment-method" value="ONLINE">
-          <label for="css">Online Payment</label><br>
-        </form>
-      </div>
-      <button class="btn btn-primary mt-3">Checkout</button>
-    </div>
-  </div>
-</form>
+</form> --}}
 
 
+<body>
+
+    <div class="offcanvas-overlay"></div>
+
+    <!-- ...:::: Start Breadcrumb Section:::... -->
+    <div class="breadcrumb-section breadcrumb-bg-color--golden">
+        <div class="breadcrumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="breadcrumb-title">Checkout</h3>
+                        <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                            <nav aria-label="breadcrumb">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="shop-grid-sidebar-left.html">Shop</a></li>
+                                    <li class="active" aria-current="page">Checkout</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- ...:::: End Breadcrumb Section:::... -->
+
+    <!-- ...:::: Start Checkout Section:::... -->
+    <div class="checkout-section">
+        <div class="container">
+            <div class="row">
+                <!-- User Quick Action Form -->
+                <div class="col-12">
+                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="0">
+                        <h3>
+                            <i class="fa fa-file-o" aria-hidden="true"></i>
+                            Returning customer?
+                            <a class="Returning" href="#" data-bs-toggle="collapse" data-bs-target="#checkout_login"
+                                aria-expanded="true">Click here to Enter your address</a>
+                        </h3>
+                        <div id="checkout_login" class="collapse" data-parent="#checkout_login">
+
+
+                            <div class="col-lg-6 col-md-6">
+                                <form action="" id="checkout-form">
+                                    <h3>Billing Details</h3>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="default-form-box">
+                                                <label>Nmae<span>*</span></label>
+                                                <input type="text" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="default-form-box">
+                                                <label>Address <span>*</span></label>
+                                                <input type="text" name="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="default-form-box">
+                                                <label>pincode<span>*</span></label>
+                                                <input type="text" name="pincode">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="default-form-box">
+                                                <label>Phone</label>
+                                                <input type="text" name="mobile">
+                                                <input type="text" name="userId" value="{{user._id}}" id="" hidden>
+                                            </div>
+                                        </div>
+                                        <div class="payment_method">
+
+                                            <div class="panel-default">
+                                                <form>
+                                                    <input type="radio" id="html" name="payment-method" value="COD">
+                                                    <label for="html">COD</label><br>
+                                                    <input type="radio" id="css" name="payment-method" value="ONLINE">
+                                                    <label for="css">Online Payment</label><br>
+                                                </form>
+
+                                            </div>
+                                            <div class="order_button pt-3">
+                                                <button class="btn btn-md btn-black-default-hover" type="submit">Proceed
+                                                    to
+                                                    Check out</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <div class="order-notes">
+                                                <label for="order_note">Order Notes</label>
+                                                <textarea id="order_note"
+                                                    placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <!-- User Quick Action Form -->
+            </div>
+            <!-- Start User Details Checkout Form -->
+            <div class="checkout_form" data-aos="fade-up" data-aos-delay="400">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                          <form action="" id="checkout-form">
+                            <h3>Select your Details</h3>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        MY ADDREESS
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">deliver to here
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{#each adderss}}
+                                                    <div class="col-sm-6 mb-3">
+                                                        <div class="card" id="checkout-form">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">
+                                                                    {{this.addreess.name}}
+                                                                </h5>
+                                                                <p class="card-text">
+                                                                    {{this.addreess.address}}
+                                                                    {{this.addreess.pincode}}
+                                                                    {{this.addreess.mobile}}
+                                                                </p>
+                                                                <input type="text" name="userId" value="{{user._id}}"
+                                                                    id="" hidden>
+                                                                {{!-- <input type="radio" class="addressSelector"
+                                                                    name="Address" id="{{this.addreess._id}}"
+                                                                    value="{{this.addreess._id}}" checked /> --}}
+                                                            </div>
+                                                            <a id="checkout-form" onclick="submitAddress('{{this._id}}')"  type="button"
+                                                                class="btn btn-primary">Select</a>
+                                                        </div>
+                                                    </div>
+                                                    {{/each}}
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <hr>
+
+                                </div>
+                            </div>
+
+                            <div class="payment_method">
+
+                                <div class="panel-default">
+                                    <form>
+                                        <input type="radio" id="htm" name="payment-method" value="COD">
+                                        <label for="htm">COD</label><br>
+                                        <input type="radio" id="cs" name="payment-method" value="ONLINE">
+                                        <label for="cs">Online Payment</label><br>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                            <div class="order_button pt-3">
+                                <button class="btn btn-md btn-black-default-hover" type="submit">Proceed to
+                                    Check out</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <form action="#">
+                            <h3>Your order</h3>
+                            <div class="order_table table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> Handbag fringilla <strong> × 2</strong></td>
+                                            <td> $165.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td> Handbag justo <strong> × 2</strong></td>
+                                            <td> $50.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td> Handbag elit <strong> × 2</strong></td>
+                                            <td> $50.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td> Handbag Rutrum <strong> × 1</strong></td>
+                                            <td> $50.00</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Cart Subtotal</th>
+                                            <td>$215.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Shipping</th>
+                                            <td><strong>$5.00</strong></td>
+                                        </tr>
+                                        <tr class="order_total">
+                                            <th>Order Total</th>
+                                            <td><strong>{{total}}</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- Start User Details Checkout Form -->
+        </div>
+    </div><!-- ...:::: End Checkout Section:::... -->
+
+    <!-- Start Footer Section -->
+    <footer class="footer-section footer-bg section-top-gap-100">
+        <div class="footer-wrapper">
+            <!-- Start Footer Top -->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row mb-n6">
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <!-- Start Footer Single Item -->
+                            <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                                data-aos-delay="0">
+                                <h5 class="title">INFORMATION</h5>
+                                <ul class="footer-nav">
+                                    <li><a href="#">Delivery Information</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="contact-us.html">Contact</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Footer Single Item -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <!-- Start Footer Single Item -->
+                            <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                                data-aos-delay="200">
+                                <h5 class="title">MY ACCOUNT</h5>
+                                <ul class="footer-nav">
+                                    <li><a href="my-account.html">My account</a></li>
+                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="faq.html">Frequently Questions</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Footer Single Item -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <!-- Start Footer Single Item -->
+                            <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                                data-aos-delay="400">
+                                <h5 class="title">CATEGORIES</h5>
+                                <ul class="footer-nav">
+                                    <li><a href="#">Decorative</a></li>
+                                    <li><a href="#">Kitchen utensils</a></li>
+                                    <li><a href="#">Chair & Bar stools</a></li>
+                                    <li><a href="#">Sofas and Armchairs</a></li>
+                                    <li><a href="#">Interior lighting</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Footer Single Item -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-6">
+                            <!-- Start Footer Single Item -->
+                            <div class="footer-widget-single-item footer-widget-color--golden" data-aos="fade-up"
+                                data-aos-delay="600">
+                                <h5 class="title">ABOUT US</h5>
+                                <div class="footer-about">
+                                    <p>We are a team of designers and developers that create high quality Magento,
+                                        Prestashop, Opencart.</p>
+
+                                    <address class="address">
+                                        <span>Address: Your address goes here.</span>
+                                        <span>Email: demo@example.com</span>
+                                    </address>
+                                </div>
+                            </div>
+                            <!-- End Footer Single Item -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Top -->
+
+            <!-- Start Footer Center -->
+            <div class="footer-center">
+                <div class="container">
+                    <div class="row mb-n6">
+                        <div class="col-xl-3 col-lg-4 col-md-6 mb-6">
+                            <div class="footer-social" data-aos="fade-up" data-aos-delay="0">
+                                <h4 class="title">FOLLOW US</h4>
+                                <ul class="footer-social-link">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-6 col-md-6 mb-6">
+                            <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="200">
+                                <h4 class="title">DON'T MISS OUT ON THE LATEST</h4>
+                                <div class="form-newsletter">
+                                    <form action="#" method="post">
+                                        <div class="form-fild-newsletter-single-item input-color--golden">
+                                            <input type="email" placeholder="Your email address..." required>
+                                            <button type="submit">SUBSCRIBE!</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Footer Center -->
+
+            <!-- Start Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="container">
+                    <div
+                        class="row justify-content-between align-items-center align-items-center flex-column flex-md-row mb-n6">
+                        <div class="col-auto mb-6">
+                            <div class="footer-copyright">
+                                <p class="copyright-text">&copy; 2021 <a href="index.html">therankme</a>. Made with <i
+                                        class="fa fa-heart text-danger"></i> by <a href="https://therankme.com/"
+                                        target="_blank">therankme</a> </p>
+
+                            </div>
+                        </div>
+                        <div class="col-auto mb-6">
+                            <div class="footer-payment">
+                                <div class="image">
+                                    <img src="assets/images/company-logo/payment.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Footer Bottom -->
+        </div>
+    </footer>
+    <!-- End Footer Section -->
+
+    <!-- material-scrolltop button -->
+    <button class="material-scrolltop" type="button"></button>
+
+    <!-- Start Modal Add cart -->
+    <div class="modal fade" id="modalAddcart" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="button" class="close modal-close" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="modal-add-cart-product-img">
+                                            <img class="img-fluid"
+                                                src="assets/images/product/default/home-1/default-1.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="modal-add-cart-info"><i class="fa fa-check-square"></i>Added to cart
+                                            successfully!</div>
+                                        <div class="modal-add-cart-product-cart-buttons">
+                                            <a href="cart.html">View Cart</a>
+                                            <a href="checkout.html">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 modal-border">
+                                <ul class="modal-add-cart-product-shipping-info">
+                                    <li> <strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
+                                            Cart.</strong></li>
+                                    <li> <strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
+                                    <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
+                                            SHOPPING</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Modal Add cart -->
+
+    <!-- Start Modal Quickview cart -->
+    <div class="modal fade" id="modalQuickview" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="button" class="close modal-close" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true"> <i class="fa fa-times"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="product-details-gallery-area mb-7">
+                                    <!-- Start Large Image -->
+                                    <div class="product-large-image modal-product-image-large swiper-container">
+                                        <div class="swiper-wrapper">
+                                            <div class="product-image-large-image swiper-slide img-responsive">
+                                                <img src="assets/images/product/default/home-1/default-1.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-large-image swiper-slide img-responsive">
+                                                <img src="assets/images/product/default/home-1/default-2.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-large-image swiper-slide img-responsive">
+                                                <img src="assets/images/product/default/home-1/default-3.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-large-image swiper-slide img-responsive">
+                                                <img src="assets/images/product/default/home-1/default-4.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-large-image swiper-slide img-responsive">
+                                                <img src="assets/images/product/default/home-1/default-5.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-large-image swiper-slide img-responsive">
+                                                <img src="assets/images/product/default/home-1/default-6.jpg" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Large Image -->
+                                    <!-- Start Thumbnail Image -->
+                                    <div
+                                        class="product-image-thumb modal-product-image-thumb swiper-container pos-relative mt-5">
+                                        <div class="swiper-wrapper">
+                                            <div class="product-image-thumb-single swiper-slide">
+                                                <img class="img-fluid"
+                                                    src="assets/images/product/default/home-1/default-1.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-thumb-single swiper-slide">
+                                                <img class="img-fluid"
+                                                    src="assets/images/product/default/home-1/default-2.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-thumb-single swiper-slide">
+                                                <img class="img-fluid"
+                                                    src="assets/images/product/default/home-1/default-3.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-thumb-single swiper-slide">
+                                                <img class="img-fluid"
+                                                    src="assets/images/product/default/home-1/default-4.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-thumb-single swiper-slide">
+                                                <img class="img-fluid"
+                                                    src="assets/images/product/default/home-1/default-5.jpg" alt="">
+                                            </div>
+                                            <div class="product-image-thumb-single swiper-slide">
+                                                <img class="img-fluid"
+                                                    src="assets/images/product/default/home-1/default-6.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <!-- Add Arrows -->
+                                        <div class="gallery-thumb-arrow swiper-button-next"></div>
+                                        <div class="gallery-thumb-arrow swiper-button-prev"></div>
+                                    </div>
+                                    <!-- End Thumbnail Image -->
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="modal-product-details-content-area">
+                                    <!-- Start  Product Details Text Area-->
+                                    <div class="product-details-text">
+                                        <h4 class="title">Nonstick Dishwasher PFOA</h4>
+                                        <div class="price"><del>$70.00</del>$80.00</div>
+                                    </div> <!-- End  Product Details Text Area-->
+                                    <!-- Start Product Variable Area -->
+                                    <div class="product-details-variable">
+                                        <!-- Product Variable Single Item -->
+                                        <div class="variable-single-item">
+                                            <span>Color</span>
+                                            <div class="product-variable-color">
+                                                <label for="modal-product-color-red">
+                                                    <input name="modal-product-color" id="modal-product-color-red"
+                                                        class="color-select" type="radio" checked>
+                                                    <span class="product-color-red"></span>
+                                                </label>
+                                                <label for="modal-product-color-tomato">
+                                                    <input name="modal-product-color" id="modal-product-color-tomato"
+                                                        class="color-select" type="radio">
+                                                    <span class="product-color-tomato"></span>
+                                                </label>
+                                                <label for="modal-product-color-green">
+                                                    <input name="modal-product-color" id="modal-product-color-green"
+                                                        class="color-select" type="radio">
+                                                    <span class="product-color-green"></span>
+                                                </label>
+                                                <label for="modal-product-color-light-green">
+                                                    <input name="modal-product-color"
+                                                        id="modal-product-color-light-green" class="color-select"
+                                                        type="radio">
+                                                    <span class="product-color-light-green"></span>
+                                                </label>
+                                                <label for="modal-product-color-blue">
+                                                    <input name="modal-product-color" id="modal-product-color-blue"
+                                                        class="color-select" type="radio">
+                                                    <span class="product-color-blue"></span>
+                                                </label>
+                                                <label for="modal-product-color-light-blue">
+                                                    <input name="modal-product-color"
+                                                        id="modal-product-color-light-blue" class="color-select"
+                                                        type="radio">
+                                                    <span class="product-color-light-blue"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- Product Variable Single Item -->
+                                        <div class="d-flex align-items-center flex-wrap">
+                                            <div class="variable-single-item ">
+                                                <span>Quantity</span>
+                                                <div class="product-variable-quantity">
+                                                    <input min="1" max="100" value="1" type="number">
+                                                </div>
+                                            </div>
+
+                                            <div class="product-add-to-cart-btn">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add To
+                                                    Cart</a>
+                                            </div>
+                                        </div>
+                                    </div> <!-- End Product Variable Area -->
+                                    <div class="modal-product-about-text">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste
+                                            laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam
+                                            in quos qui nemo ipsum numquam, reiciendis maiores quidem aperiam, rerum vel
+                                            recusandae</p>
+                                    </div>
+                                    <!-- Start  Product Details Social Area-->
+                                    <div class="modal-product-details-social">
+                                        <span class="title">SHARE THIS PRODUCT</span>
+                                        <ul>
+                                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
+                                            <li><a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                                            </li>
+                                            <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+
+                                    </div> <!-- End  Product Details Social Area-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
 
 <script>
-  $("#checkout-form").submit((e) => {
-    e.preventDefault()
-    $.ajax({
-      url: '/place-order',
-      method: 'post',
-      data: $('#checkout-form').serialize(),
-      success: (response) => {
-        console.log(response)
-        if (response.codSuccess) {
-          location.href = '/order-success'
-        } else {
-          razorpayment(response)
-        } 
-      }
-    }) 
-  })
-  function razorpayment(order) {
-    var options = {
-      "key": "rzp_test_2KevjUREiq5hiq", // Enter the Key ID generated from the Dashboard
-      "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      "currency": "INR",
-      "name": "kannanPoPz",
-      "description": "Test Transaction",
-      "image": "https://example.com/your_logo",
-      "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      "handler": function (response) {
-       
-        verifyPayment(response,order)
-      },
-      "prefill": {
-        "name": "Gaurav Kumar",
-        "email": "gaurav.kumar@example.com",
-        "contact": "9999999999"
-      },
-      "notes": {
-        "address": "Razorpay Corporate Office"
-      },
-      "theme": {
-        "color": "#3399cc"
-      }
-    };
-    var rzp1 = new Razorpay(options);
-     rzp1.open();
-  }
-  function verifyPayment(payment,order){
-    $.ajax({
-      url:'/verify-Payment',
-      data:{
-        payment,
-        order
-      },
-      method:'post',
-      success:(response)=>{
-        if(response.status){
-            location.href = '/order-success'
-        }else{
-          alert("payment failed")
-        }
-      }
-    })
-  }
+    function submitAddress(addr) {
+        console.log(addr)
+        $.ajax({
+            url: '/submitAddress/' + addr,
+            method: 'get',
+            success: (response) => {
+
+            }
+        })
+    }
 </script>
 
-<style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #2196F3;
-    padding: 10px;
-  }
+<script>
+    $("#checkout-form").submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+                console.log(response)
+                if (response.codSuccess) {
+                    location.href = '/order-success'
+                } else {
+                    razorpayment(response)
+                }
+            }
+        })
+    })
+    function razorpayment(order) {
+        var options = {
+            "key": "rzp_test_2KevjUREiq5hiq", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "kannanPoPz",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
 
-  .grid-item {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    font-size: 30px;
-    text-align: center;
-  }
-</style>
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+    function verifyPayment(payment, order) {
+        $.ajax({
+            url: '/verify-Payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    location.href = '/order-success'
+                } else {
+                    alert("payment failed")
+                }
+            }
+        })
+    }
+</script>

@@ -1,0 +1,122 @@
+{{!-- 
+<section class="mt-5">
+            <h3 class="text-center">All Orders</h3>
+  <div class="container " style="background-color: #07fbff!important;">
+    <div class="row mt-4">
+      <a href="/admi/add-products" class="btn btn-success ml-auto">All Users</a>
+    </div>
+    <table class="table mt-5" id="productstable">
+      <thead>
+        <tr>
+          <th scope="col">no</th>
+          <th scope="col">Name</th>
+          <th scope="col">email</th>
+          <th scope="col">Password</th>
+          <th scope="col">options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each accounts}}
+        <tr>
+          <td >1</td>
+          <td >{{this.name}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.password}}</td>
+          <td>
+            <a href="/admi/block/{{this._id}}" class="btn btn-danger">block</a>
+            <a href="" class="btn btn-warning">unblock</a>
+          </td>
+         
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  $( function () {
+    $('#productstable').DataTable();
+} );
+</script>
+<style>
+    .text-center{
+        color: coral;
+    }
+    
+</style> --}}
+
+
+<div class="container mt-5">
+    <div class="row tm-content-row">
+      <div class="col-12 tm-block-col">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Access</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+               {{#each accounts}}
+              <tr>
+                <th>{{this.name}}</th>
+                <td>{{this.email}}</td>
+                <td>{{this.access}}</td>
+                <td>
+                  <a href="/admi/blockUser/{{this._id}}"
+                    class="btn btn-danger" onclick="alerttt">Block</a>
+                
+                    <a href="/admi/unblockUser/{{this._id}}"
+                        class="btn btn-success">Unblock</a>   
+                </td>
+              </tr>
+           {{/each}}
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+
+function alert(alerttt) {
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      })
+    }
+</script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- plugins:js -->
+<script src="/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="/vendors/chart.js/Chart.min.js"></script>
+<script src="/vendors/datatables.net/jquery.dataTables.js"></script>
+<script src="/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/js/dataTables.select.min.js"></script>
+
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="/js/off-canvas.js"></script>
+<script src="/js/hoverable-collapse.js"></script>
+<script src="/js/template.js"></script>
+<script src="/js/settings.js"></script>
+<script src="/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="/js/dashboard.js"></script>
+<script src="/js/Chart.roundedBarCharts.js"></script>
+<!-- End custom js for this page-->

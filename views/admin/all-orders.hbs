@@ -1,0 +1,308 @@
+{{!-- 
+
+
+<section class="mt-5">
+            <h3 class="text-center">All Orders</h3>
+  <div class="container " style="background-color: #07fbff!important;">
+    <div class="row mt-4">
+    </div>
+    <table class="table mt-5" id="productstable">
+      <thead>
+        <tr>
+          <th scope="col">no</th>
+          <th scope="col">Address</th>
+          <th scope="col">Pincode</th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each allorders}}
+        <tr>
+          <th scope="row">1</th>
+          <td>{{this.deliveryDetils.address}}</td>
+          <td>{{this.deliveryDetils.pincode}}</td>
+          <td>{{this.deliveryDetils.mobile}}</td>
+          <td>{{this.deliveryDetils.totalAmount}}</td>
+          
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  $( function () {
+    $('#productstable').DataTable();
+} );
+</script>
+<style>
+    .text-center{
+        color: red;
+    }
+</style> 
+
+ --}}
+
+
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.3/b-colvis-2.3.3/b-html5-2.3.3/b-print-2.3.3/cr-1.6.1/date-1.2.0/fc-4.2.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rg-1.3.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sp-2.1.0/sl-1.5.0/sr-1.2.0/datatables.min.css"
+/>
+<link rel="stylesheet" href="css/datatable.css" />
+
+
+
+<div class="text-center mx-auto mt-2" style="min-width: 22rem"></div>
+<div class="container-fluid mt-3" style="min-height: 33rem">
+  <h2 class="text-center ">Manage Orders</h2>
+
+  <table
+    id="example"
+    class="table table-striped table-bordered"
+    style="width: 100%"
+  >
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Payment Mode</th>
+        <th>Payment status</th>
+        <th>Track</th>
+        <th>sd</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+     
+     {{#each allorders}}
+      <tr>
+        <th scope="row">{{this._id}}</th>
+        <td>{{this.deliveryDetils.name}}</td>
+        <td>₹ {{this.deliveryDetils.totalAmount}} </td>
+        <td>{{this.paymentmethod}} </td>
+        <td>{{this.status}}</td>
+        <td>
+          <select  id="track{{@index}}"  style="background-color: rgb(249, 249, 5); text-size-adjust: 12px" >
+            <option >{{this.status}}</option>
+            <option value="Cancellede">Cancellede</option>
+            <option value="orderconfirmed">orderconfirmed</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Out For Delivery">Out For Delivery</option>
+          </select>
+        </td>
+        <td>
+          <button
+            type="button"
+            id="changetrack"
+            class="btn btn-primary btn-sm"
+            onclick="orderStatus('{{this._id}}',{{@index}})"
+          >
+            Change
+          </button>
+        </td>
+
+        <td>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModalLong"
+          >
+            View details
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModalLong"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5
+                    class="modal-title"
+                    id="exampleModalLongTitle"
+                    style="color: black"
+                  >
+                    Order Details
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="invoice">
+                  <div class="row order_d_inner">
+                    <div class="col-lg-4">
+                      <div class="details_item" style="color: black">
+                        <h4>Order Info</h4>
+                        <ul class="list">
+                          <li>
+                            <a href="#" style="color: black"
+                              ><span>Date{{this.date}}</span> :
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" style="color: black"
+                              ><span>Total</span> : Rs  {{this.deliveryDetils.totalAmount}}</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#" style="color: black"
+                              ><span>Payment method</span> :{{this.paymentmethod}}  </a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="details_item" style="color: black">
+                        <h4>Billing Address</h4>
+                        <ul class="list">
+                          <li>
+                            <a href="#" style="color: black"
+                              ><span>Street</span> :  {{this.deliveryDetils.address}} </a
+                            >
+                          </li>
+                          <li>
+                            <a href="#" style="color: black"
+                              ><span>Postcode </span> :  {{this.deliveryDetils.pincode}}  </a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="details_item" style="color: black">
+                        <h4>Shipping Address</h4>
+                        <ul class="list">
+                          <li>
+                            <a href="#" style="color: black"
+                              ><span>District</span> :  {{this.deliveryDetils.address}}</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#" style="color: black"
+                              ><span>Postcode </span> : {{this.deliveryDetils.pincode}}</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" id="download-button" class="btn btn-primary">
+                    save as PDF
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+         {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+  const button = document.getElementById('download-button');
+
+  function generatePDF() {
+    // Choose the element that your content will be rendered to.
+    const element = document.getElementById('invoice');
+    // Choose the element and save the PDF for your user.
+    html2pdf().from(element).save();
+  }
+
+  button.addEventListener('click', generatePDF);
+</script>
+
+
+<script>
+  function change(val) {
+    let page = document.getElementById('page').textContent;
+    let count = parseInt(page) + val;
+    console.log(count);
+    $.ajax({
+      url: `/admin/orders?page=${count}&limit=10`,
+      method: 'get',
+      success: (response) => {},
+    });
+  }
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#example').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+  });
+</script>
+
+<script>
+  function orderStatus(e, index) {
+    const oid = e;
+    const value = $(`#track${index}`).find(':selected').val();
+    console.log(oid, value);
+      alert(`oid = ${oid}`);
+    alert(`value = ${value}`);
+    $.ajax({
+      url: '/admi/order-status',
+      data: {
+        oid,
+        value,
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.status) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Track statuse has been changed',
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
+      },
+    });
+  }
+</script>
+
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.3/b-colvis-2.3.3/b-html5-2.3.3/b-print-2.3.3/cr-1.6.1/date-1.2.0/fc-4.2.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rg-1.3.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sp-2.1.0/sl-1.5.0/sr-1.2.0/datatables.min.js"
+></script>

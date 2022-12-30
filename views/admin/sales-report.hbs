@@ -1,0 +1,84 @@
+
+
+ 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css"/>
+
+<link rel="stylesheet" href="css/datatable.css">
+ 
+
+
+
+<div class="text-center mx-auto mt-2" style="min-width: 22rem">
+  <div class="container-fluid mt-3" style="min-height: 33rem">
+
+
+    <div  id="salesreport">
+    <h2 class="text-center text-white" >Sales Report</h2>
+    <button  type="button" id="download-button">Download as PDF</button>
+    <table
+      id="sale"
+      class="display nowrap"
+      style="width: 100%"
+    >
+      <thead >
+        <tr >
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Place</th>
+          <th>Phone No</th>
+          <th>Status</th>
+          <th>paymentMethod</th>
+          <th>Date</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      
+      <tbody id="myTable">
+      {{#each allorders}}
+        <tr>
+          <td>{{this._id}}</td>
+          <td>{{this.deliveryDetils.name}}</td>
+          <td>
+         {{this.deliveryDetils.address}}
+          </td>
+          <td>{{this.deliveryDetils.mobile}}</td>
+          <td>{{this.status}}</td>
+          <td>{{this.paymentmethod}}</td>
+          <td>{{this.date}}</td>
+          <td>{{this.deliveryDetils.totalAmount}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+  const button = document.getElementById('download-button');
+
+  function generatePDF() {
+    // Choose the element that your content will be rendered to.
+    const element = document.getElementById('salesreport');
+    // Choose the element and save the PDF for your user.
+    html2pdf().from(element).save();
+  }
+
+  button.addEventListener('click', generatePDF);
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#sale').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
+
+
+

@@ -1,19 +1,20 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var session = require('express-session')
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session')
-var hbs = require('express-handlebars');
-var userRouter = require('./routes/user');
-var adminRouter = require('./routes/admin')
-const { join } = require('path');
-var db = require('./config/connection');
-var fileUpload = require('express-fileupload')
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const axios=require('axios')
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session')
+const hbs = require('express-handlebars');
+const userRouter = require('./routes/user');
+const adminRouter = require('./routes/admin')
+const db = require('./config/connection');
+const fileUpload = require('express-fileupload')
+const dotenv=require('dotenv')
 
-
-var app = express();
+dotenv.config()  
+  
+const app = express();
 
 // view engine 
 app.set('views', path.join(__dirname, 'views'));
@@ -31,9 +32,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: "key", cookie: { maxAge: 600000 } }))
+app.use(session({ secret: "key", cookie: { maxAge: 60000000000 } }))
 app.use(fileUpload())
 
+// mongdb connections
 db.connect((err) => {
   if (err) {
     console.log("connection error" + err);
@@ -43,7 +45,7 @@ db.connect((err) => {
   }
 })
 app.use('/', userRouter);
-app.use('/admin', adminRouter)
+app.use('/admi', adminRouter)
 
 app.use(function (req, res, next) {
   next(createError(404));
