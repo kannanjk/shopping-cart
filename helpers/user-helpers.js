@@ -133,6 +133,7 @@ module.exports = {
     },
     addToCart: (proId, userId) => {
         console.log(proId, userId);
+        console.log("pappan");
         let proObj = {
             item: objectId(proId),
             quantity: 1

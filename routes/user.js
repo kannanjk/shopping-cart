@@ -82,7 +82,9 @@ router.get('/aboutus', (req, res) => {
   res.render('user/aboutus', { use: true })
 })
 router.get('/add-to-cart/:id', (req, res) => {
+  console.log("kannan");
   userHelper.addToCart(req.params.id, req.session.user._id).then((response) => {
+    console.log("ivide und");
     res.json({ status: true })
   })
 })

@@ -1,7 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const axios=require('axios')
+const axios = require('axios')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session')
@@ -10,10 +10,10 @@ const userRouter = require('./routes/user');
 const adminRouter = require('./routes/admin')
 const db = require('./config/connection');
 const fileUpload = require('express-fileupload')
-const dotenv=require('dotenv')
+const dotenv = require('dotenv')
 
-dotenv.config()  
-  
+dotenv.config()
+
 const app = express();
 
 // view engine 
@@ -50,7 +50,6 @@ app.use('/admi', adminRouter)
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -60,3 +59,5 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+
