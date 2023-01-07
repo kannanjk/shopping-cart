@@ -6,7 +6,7 @@ const db = 'mongodb+srv://jishnu:iV1nYHf77FYnp8Ju@cluster0.zppmaeb.mongodb.net/M
 const state = {
     db: null
 }
-
+   
 module.exports.connect = function (done) {
     const dbname = 'shopping'
 
