@@ -310,7 +310,7 @@ module.exports = {
                 updateOne({ _id: objectId(proId) },
                     {
                         $pull: { products: { item: objectId(cartId) } }
-                    }
+                    }   
                 ).then((response) => {
                     resolve()
                     console.log(response);
