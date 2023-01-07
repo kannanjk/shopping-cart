@@ -98,7 +98,6 @@ module.exports = {
         userAd.default = false
         return new Promise(async (resolve, reject) => {
             let userd = await db.get().collection(collections.DETAILS_COLLECTION).findOne({ user: objectId(userId) })
-            console.log(userd);
             if (userd) {
                 db.get().collection(collections.DETAILS_COLLECTION)
                     .updateOne({ user: objectId(userId) },
@@ -128,7 +127,6 @@ module.exports = {
                     }
                 ]).toArray()
             resolve(addreess)
-            console.log(addreess);
         })
     },
     addToCart: (proId, userId) => {
@@ -382,11 +380,14 @@ module.exports = {
                 currency: "INR",
                 receipt: "" + orderId
             };
+            console.log("ivanaara!");
             instance.orders.create(options, function (err, order) {
                 if (err) {
                     console.log(err);
+                    console.log("ivide err");
                 } else {
                     resolve(order)
+                    console.log("successes");
                 }
             })
         })

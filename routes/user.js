@@ -119,7 +119,9 @@ router.post('/place-order', async (req, res) => {
     if (req.body['payment-method'] === 'COD') {
       res.json({ codSuccess: true })
     } else {
+      console.log("My@#$#%");
       userHelper.genaratRaz(orderId, total).then((response) => {
+        console.log("ithokke enth");
         res.json(response)
       })
     }

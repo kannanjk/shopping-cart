@@ -1,14 +1,16 @@
 const MongoClient = require('mongodb').MongoClient
 
+const dbl = 'mongodb://localhost:27017'
+const db = 'mongodb+srv://jishnu:<password>@cluster0.zppmaeb.mongodb.net/?retryWrites=true&w=majority'
+
 const state = {
     db: null
 }
 
 module.exports.connect = function (done) {
-    const url = 'mongodb://localhost:27017'
     const dbname = 'shopping'
 
-    MongoClient.connect(url, (err, data) => {
+    MongoClient.connect(dbl, (err, data) => {
         if (err) return done(err)
         state.db = data.db(dbname)
         done()
