@@ -66,7 +66,7 @@
             <div class="row">
                 <!-- User Quick Action Form -->
                 <div class="col-12">
-                    <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="0">
+                    {{!-- <div class="user-actions accordion" data-aos="fade-up" data-aos-delay="0">
                         <h3>
                             <i class="fa fa-file-o" aria-hidden="true"></i>
                             Returning customer?
@@ -133,7 +133,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                    
                 </div>
                 <!-- User Quick Action Form -->
@@ -143,61 +143,36 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                           <form action="" id="checkout-form">
-                            <h3>Select your Details</h3>
+                            {{!-- <h3>Select your Details</h3> --}}
                             <div class="col-lg-6">
                                 <div class="row">
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    {{!-- <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#exampleModalCenter">
                                         MY ADDREESS
-                                    </button>
+                                    </button> --}}
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
-                                                <div class="modal-header">
+                                                {{!-- <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLongTitle">deliver to here
                                                     </h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    {{#each adderss}}
-                                                    <div class="col-sm-6 mb-3">
-                                                        <div class="card" id="checkout-form">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">
-                                                                    {{this.addreess.name}}
-                                                                </h5>
-                                                                <p class="card-text">
-                                                                    {{this.addreess.address}}
-                                                                    {{this.addreess.pincode}}
-                                                                    {{this.addreess.mobile}}
-                                                                </p>
-                                                                <input type="text" name="userId" value="{{user._id}}"
-                                                                    id="" hidden>
-                                                                {{!-- <input type="radio" class="addressSelector"
-                                                                    name="Address" id="{{this.addreess._id}}"
-                                                                    value="{{this.addreess._id}}" checked /> --}}
-                                                            </div>
-                                                            <a id="checkout-form" onclick="submitAddress('{{this._id}}')"  type="button"
-                                                                class="btn btn-primary">Select</a>
-                                                        </div>
-                                                    </div>
-                                                    {{/each}}
-                                                </div>
+                                                </div> --}}
+                                               
                                                 <div class="modal-footer">
 
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <hr>
+                                  
 
                                 </div>
                             </div>
@@ -205,20 +180,66 @@
                             <div class="payment_method">
 
                                 <div class="panel-default">
-                                    <form>
-                                        <input type="radio" id="htm" name="payment-method" value="COD">
-                                        <label for="htm">COD</label><br>
-                                        <input type="radio" id="cs" name="payment-method" value="ONLINE">
-                                        <label for="cs">Online Payment</label><br>
-                                    </form>
+                                   <form action="" id="checkout-form">
+                                    <h3>Billing Details</h3>
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="default-form-box">
+                                                <label>Nmae<span>*</span></label>
+                                                <input type="text" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="default-form-box">
+                                                <label>Address <span>*</span></label>
+                                                <input type="text" name="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="default-form-box">
+                                                <label>pincode<span>*</span></label>
+                                                <input type="text" name="pincode">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="default-form-box">
+                                                <label>Phone</label>
+                                                <input type="text" name="mobile">
+                                                <input type="text" name="userId" value="{{user._id}}" id="" hidden>
+                                            </div>
+                                        </div>
+                                        <div class="payment_method">
 
+                                            <div class="panel-default">
+                                                <form>
+                                                    <input type="radio" id="html" name="payment-method" value="COD">
+                                                    <label for="html">COD</label><br>
+                                                    <input type="radio" id="css" name="payment-method" value="ONLINE">
+                                                    <label for="css">Online Payment</label><br>
+                                                </form>
+
+                                            </div>
+                                            <div class="order_button pt-3">
+                                                <button class="btn btn-md btn-black-default-hover" type="submit">Proceed
+                                                    to
+                                                    Check out</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <div class="order-notes">
+                                                <label for="order_note">Order Notes</label>
+                                                <textarea id="order_note"
+                                                    placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                 
                                 </div>
 
                             </div>
-                            <div class="order_button pt-3">
-                                <button class="btn btn-md btn-black-default-hover" type="submit">Proceed to
-                                    Check out</button>
-                            </div>
+                           
                         </form>
 
                     </div>

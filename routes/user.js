@@ -101,21 +101,17 @@ router.get('/removepro/:id', (req, res) => {
   })
 })
 router.get('/place-order', verifylogin, async (req, res) => {
-  let total = 0
-  if (total = 0) {
     total = await userHelper.GetTotalAmount(req.session.user._id)
-  } else {
     userHelper.getaddress(req.session.user._id).then((adderss) => {
       res.render('user/place-order', { adderss, total, user: req.session.user })
     })
-  }
+  
 })
 router.post('/place-order', async (req, res) => {
   userHelper.inseAddres(req.body, req.session.user._id)
   let products = await userHelper.getCartProList(req.body.userId)
   let total = await userHelper.GetTotalAmount(req.body.userId)
   userHelper.placeOrder(req.body, products, total).then((orderId) => {
-    let total = 0
     if (req.body['payment-method'] === 'COD') {
       res.json({ codSuccess: true })
     } else {

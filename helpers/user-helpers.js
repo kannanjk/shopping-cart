@@ -39,10 +39,10 @@ module.exports = {
             client.verify.v2.services(Service_SID)
                 .verificationChecks
                 .create({ to: `+91${num}`, code: otp })
-                    resolve(response)
-                    console.log("kannan");
-                    console.log(response);
-                })
+            resolve(response)
+            console.log("kannan");
+            console.log(response);
+        })
     },
     Dosignup: (userData) => {
         userData.access = true
@@ -310,7 +310,7 @@ module.exports = {
                 updateOne({ _id: objectId(proId) },
                     {
                         $pull: { products: { item: objectId(cartId) } }
-                    }   
+                    }
                 ).then((response) => {
                     resolve()
                     console.log(response);
@@ -679,10 +679,10 @@ module.exports = {
             console.log(latest);
         })
     },
-    couponlist:()=>{
-        return new Promise(async(resolve,reject)=>{
-            let coupons=await db.get().collection(collections.COPUN_COLLECTION)
-            .find().toArray()
+    couponlist: () => {
+        return new Promise(async (resolve, reject) => {
+            let coupons = await db.get().collection(collections.COPUN_COLLECTION)
+                .find().toArray()
             resolve(coupons)
         })
     },
@@ -700,12 +700,5 @@ module.exports = {
     //     console.log(response);
     //     })
     // }
-
-
-  
-  
-
-   
-
 
 }       
