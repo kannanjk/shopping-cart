@@ -101,7 +101,7 @@ router.get('/removepro/:id', (req, res) => {
   })
 })
 router.get('/place-order', verifylogin, async (req, res) => {
-    total = await userHelper.GetTotalAmount(req.session.user._id)
+  let  total = await userHelper.GetTotalAmount(req.session.user._id)
     userHelper.getaddress(req.session.user._id).then((adderss) => {
       res.render('user/place-order', { adderss, total, user: req.session.user })
     })
