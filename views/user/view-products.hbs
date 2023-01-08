@@ -202,8 +202,8 @@
                                         <h4 class="title"> </h4>
                                         <h2 class="subtitle">{{this.Model}}</h2>    
                                            
-                                        <a href=""
-                                            class="btn btn-lg btn-outline-golden">shop now </a>
+                                        {{!-- <a
+                                            class="btn btn-lg btn-outline-golden">shop now </a> --}}
                                     </div>
                                 </div>
                             </div>
@@ -321,7 +321,7 @@
                         <!-- End Banner Single Item -->
                     </div>
                     {{/each}}
-                    <div class="col-lg-6 col-12 mb-6">
+                    {{!-- <div class="col-lg-6 col-12 mb-6">
                         <div class="row mb-n6">
                             <!-- Start Banner Single Item -->
                            
@@ -351,7 +351,7 @@
                             {{/each}}
                             <!-- End Banner Single Item -->
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
@@ -390,7 +390,7 @@
                                     <!-- Start Product Default Single Item -->
                                     <div class="product-default-single-item product-color--golden ">
                                         <div class="image-box">
-                                            <a href="product-details-default.html" class="image-link">
+                                            <a  class="image-link">
                                                 <img  src="/product-image/{{this._id}}.jpg" style="height: 140px;" alt="">
                                                 <img  src="/product-image/{{this._id}}.jpg" style="height: 140px;" alt="">
                                             </a>
@@ -405,7 +405,7 @@
                                                <div class="action-link-right">
                                                    
                                                     <a href="" onclick="addtowish('{{this._id}}')" data-bs-toggle="modal" data-bs-target="#modalAddcart"><i class="icon-heart"></i></a>
-                                                    <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                                    <a href=""><i class="icon-shuffle"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -502,7 +502,7 @@
                                     {{#each products}}
                                     <div class="product-default-single-item product-color--golden swiper-slide">
                                         <div class="image-box">
-                                            <a href="product-details-default.html" class="image-link">
+                                            <a  class="image-link">
                                                 <img src="/product-image/{{this._id}}.jpg" style="height: 220px;" alt="">
                                                 <img src="/product-image/{{this._id}}.jpg"  style="height: 220px;" alt="">
                                             </a>
@@ -519,7 +519,7 @@
                                                         data-bs-target="#modalQuickview"><i
                                                             class="icon-magnifier"></i></a>
                                                     <a href="" onclick="addtowish('{{this._id}}')" data-bs-toggle="modal" data-bs-target="#modalAddcart"><i class="icon-heart"></i></a>
-                                                    <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                                    <a><i class="icon-shuffle"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -568,7 +568,7 @@
                 <div class="image">
                     <img class="img-fluid" src="assets/images/banner/banner-style-4-img-1.jpg" alt="">
                 </div>
-                <a href="product-details-default.html" class="content">
+                <a  class="content">
                     <div class="inner">
                         <h4 class="title">Bar Stool</h4>
                         <h6 class="sub-title">20 products</h6>
@@ -583,7 +583,7 @@
                 <div class="image">
                     <img class="img-fluid" src="assets/images/banner/banner-style-4-img-2.jpg" alt="">
                 </div>
-                <a href="product-details-default.html" class="content">
+                <a  class="content">
                     <div class="inner">
                         <h4 class="title">Armchairs</h4>
                         <h6 class="sub-title">20 products</h6>
@@ -598,7 +598,7 @@
                 <div class="image">
                     <img class="img-fluid" src="assets/images/banner/banner-style-4-img-3.jpg" alt="">
                 </div>
-                <a href="product-details-default.html" class="content">
+                <a  class="content">
                     <div class="inner">
                         <h4 class="title">lighting</h4>
                         <h6 class="sub-title">20 products</h6>
@@ -613,7 +613,7 @@
                 <div class="image">
                     <img class="img-fluid" src="assets/images/banner/banner-style-4-img-4.jpg" alt="">
                 </div>
-                <a href="product-details-default.html" class="content">
+                <a  class="content">
                     <div class="inner">
                         <h4 class="title">Easy chairs</h4>
                         <h6 class="sub-title">20 products</h6>
@@ -656,22 +656,22 @@
                                     <!-- Start Product Default Single Item -->
                                     <div class="blog-default-single-item blog-color--golden swiper-slide">
                                         <div class="image-box">
-                                            <a href="blog-single-sidebar-left.html" class="image-link">
+                                            <a  class="image-link">
                                                 <img class="img-fluid"
                                                     src="assets/images/blog/blog-grid-home-1-img-1.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post One</a>
+                                            <h6 class="title"><a >Blog Post One</a>
                                             </h6>
                                             <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.
                                                 Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>
                                             <div class="inner">
-                                                <a href="blog-single-sidebar-left.html"
+                                                <a 
                                                     class="read-more-btn icon-space-left">Read More <span><i
                                                             class="ion-ios-arrow-thin-right"></i></span></a>
                                                 <div class="post-meta">
-                                                    <a href="#" class="date">24 Apr</a>
+                                                    <a  class="date">24 Apr</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -680,21 +680,21 @@
                                     <!-- Start Product Default Single Item -->
                                     <div class="blog-default-single-item blog-color--golden swiper-slide">
                                         <div class="image-box">
-                                            <a href="blog-single-sidebar-left.html" class="image-link">
+                                            <a  class="image-link">
                                                 <img class="img-fluid"
                                                     src="assets/images/blog/blog-grid-home-1-img-2.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Two</a>
+                                            <h6 class="title"><a >Blog Post Two</a>
                                             </h6>
                                             <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.
                                                 Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>
                                             <div class="inner">
-                                                <a href="#" class="read-more-btn icon-space-left">Read More <span><i
+                                                <a  class="read-more-btn icon-space-left">Read More <span><i
                                                             class="ion-ios-arrow-thin-right"></i></span></a>
                                                 <div class="post-meta">
-                                                    <a href="blog-single-sidebar-left.html" class="date">24 Apr</a>
+                                                    <a  class="date">24 Apr</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -703,22 +703,22 @@
                                     <!-- Start Product Default Single Item -->
                                     <div class="blog-default-single-item blog-color--golden swiper-slide">
                                         <div class="image-box">
-                                            <a href="blog-single-sidebar-left.html" class="image-link">
+                                            <a  class="image-link">
                                                 <img class="img-fluid"
                                                     src="assets/images/blog/blog-grid-home-1-img-3.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post
+                                            <h6 class="title"><a>Blog Post
                                                     Three</a></h6>
                                             <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.
                                                 Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>
                                             <div class="inner">
-                                                <a href="blog-single-sidebar-left.html"
+                                                <a 
                                                     class="read-more-btn icon-space-left">Read More <span><i
                                                             class="ion-ios-arrow-thin-right"></i></span></a>
                                                 <div class="post-meta">
-                                                    <a href="#" class="date">24 Apr</a>
+                                                    <a  class="date">24 Apr</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -727,22 +727,22 @@
                                     <!-- Start Product Default Single Item -->
                                     <div class="blog-default-single-item blog-color--golden swiper-slide">
                                         <div class="image-box">
-                                            <a href="blog-single-sidebar-left.html" class="image-link">
+                                            <a  class="image-link">
                                                 <img class="img-fluid"
                                                     src="assets/images/blog/blog-grid-home-1-img-4.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Four</a>
+                                            <h6 class="title"><a >Blog Post Four</a>
                                             </h6>
                                             <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.
                                                 Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>
                                             <div class="inner">
-                                                <a href="blog-single-sidebar-left.html"
+                                                <a 
                                                     class="read-more-btn icon-space-left">Read More <span><i
                                                             class="ion-ios-arrow-thin-right"></i></span></a>
                                                 <div class="post-meta">
-                                                    <a href="#" class="date">24 Apr</a>
+                                                    <a  class="date">24 Apr</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -751,18 +751,18 @@
                                     <!-- Start Product Default Single Item -->
                                     <div class="blog-default-single-item blog-color--golden swiper-slide">
                                         <div class="image-box">
-                                            <a href="blog-single-sidebar-left.html" class="image-link">
+                                            <a  class="image-link">
                                                 <img class="img-fluid"
                                                     src="assets/images/blog/blog-grid-home-1-img-5.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Five</a>
+                                            <h6 class="title"><a>Blog Post Five</a>
                                             </h6>
                                             <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.
                                                 Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>
                                             <div class="inner">
-                                                <a href="blog-single-sidebar-left.html"
+                                                <a
                                                     class="read-more-btn icon-space-left">Read More <span><i
                                                             class="ion-ios-arrow-thin-right"></i></span></a>
                                                 <div class="post-meta">
@@ -775,18 +775,18 @@
                                     <!-- Start Product Default Single Item -->
                                     <div class="blog-default-single-item blog-color--golden swiper-slide">
                                         <div class="image-box">
-                                            <a href="blog-single-sidebar-left.html" class="image-link">
+                                            <a class="image-link">
                                                 <img class="img-fluid"
                                                     src="assets/images/blog/blog-grid-home-1-img-6.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <h6 class="title"><a href="blog-single-sidebar-left.html">Blog Post Six</a>
+                                            <h6 class="title"><a>Blog Post Six</a>
                                             </h6>
                                             <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.
                                                 Aenean posuere libero eu augue condimentum rhoncus. Praesent</p>
                                             <div class="inner">
-                                                <a href="blog-single-sidebar-left.html"
+                                                <a
                                                     class="read-more-btn icon-space-left">Read More <span><i
                                                             class="ion-ios-arrow-thin-right"></i></span></a>
                                                 <div class="post-meta">
