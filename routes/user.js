@@ -101,11 +101,14 @@ router.get('/removepro/:id', (req, res) => {
   })
 })
 router.get('/place-order', verifylogin, async (req, res) => {
-  let  total = await userHelper.GetTotalAmount(req.session.user._id)
+  let total=0
+  if(total){
+    total = await userHelper.GetTotalAmount(req.session.user._id)
+  }else{
    // userHelper.getaddress(req.session.user._id).then((adderss) => {
       res.render('user/place-order', {  total, user: req.session.user })
     // })
-  
+  }
 })
 router.post('/place-order', async (req, res) => {
  // userHelper.inseAddres(req.body, req.session.user._id)
