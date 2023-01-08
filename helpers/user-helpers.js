@@ -94,27 +94,27 @@ module.exports = {
             }
         })
     },
-    inseAddres: (userAd, userId) => {
-        userAd.default = false
-        return new Promise(async (resolve, reject) => {
-            let userd = await db.get().collection(collections.DETAILS_COLLECTION).findOne({ user: objectId(userId) })
-            if (userd) {
-                db.get().collection(collections.DETAILS_COLLECTION)
-                    .updateOne({ user: objectId(userId) },
-                        {
-                            $push: { addreess: userAd }
-                        }
-                    )
-            } else {
-                let userObj = {
-                    user: objectId(userId),
-                    addreess: [userAd]
-                }
-                db.get().collection(collections.DETAILS_COLLECTION)
-                    .insertOne(userObj)
-            }
-        })
-    },
+    // inseAddres: (userAd, userId) => {
+    //     userAd.default = false
+    //     return new Promise(async (resolve, reject) => {
+    //         let userd = await db.get().collection(collections.DETAILS_COLLECTION).findOne({ user: objectId(userId) })
+    //         if (userd) {
+    //             db.get().collection(collections.DETAILS_COLLECTION)
+    //                 .updateOne({ user: objectId(userId) },
+    //                     {
+    //                         $push: { addreess: userAd }
+    //                     }
+    //                 )
+    //         } else {
+    //             let userObj = {
+    //                 user: objectId(userId),
+    //                 addreess: [userAd]
+    //             }
+    //             db.get().collection(collections.DETAILS_COLLECTION)
+    //                 .insertOne(userObj)
+    //         }
+    //     })
+    // },
     getaddress: (userId) => {
         return new Promise(async (resolve, reject) => {
             let addreess = await db.get().collection(collections.DETAILS_COLLECTION)

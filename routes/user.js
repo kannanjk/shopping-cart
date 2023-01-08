@@ -102,13 +102,13 @@ router.get('/removepro/:id', (req, res) => {
 })
 router.get('/place-order', verifylogin, async (req, res) => {
   let  total = await userHelper.GetTotalAmount(req.session.user._id)
-    userHelper.getaddress(req.session.user._id).then((adderss) => {
-      res.render('user/place-order', { adderss, total, user: req.session.user })
-    })
+   // userHelper.getaddress(req.session.user._id).then((adderss) => {
+      res.render('user/place-order', {  total, user: req.session.user })
+    // })
   
 })
 router.post('/place-order', async (req, res) => {
-  userHelper.inseAddres(req.body, req.session.user._id)
+ // userHelper.inseAddres(req.body, req.session.user._id)
   let products = await userHelper.getCartProList(req.body.userId)
   let total = await userHelper.GetTotalAmount(req.body.userId)
   userHelper.placeOrder(req.body, products, total).then((orderId) => {
